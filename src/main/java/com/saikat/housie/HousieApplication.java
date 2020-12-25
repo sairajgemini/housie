@@ -1,5 +1,6 @@
 package com.saikat.housie;
 
+import com.saikat.housie.pojo.Invitation;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
