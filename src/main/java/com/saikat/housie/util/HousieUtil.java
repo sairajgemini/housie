@@ -19,7 +19,7 @@ public class HousieUtil {
         return numberList;
     }
 
-    public static final Integer[] generateRandomPosition() {
+    public static Integer[] generateRandomPosition() {
         List<Integer> indexList = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8);
         shuffleListFrequently(indexList, 10);
         return indexList.subList(0, 5).toArray(Integer[]::new);
@@ -40,7 +40,7 @@ public class HousieUtil {
         return subHousieRandomList;
     }
 
-    public static final List<List<Integer>> generateHousieTicket() {
+    public static List<List<Integer>> generateHousieTicket() {
         Integer[][] housieTicket = new Integer[3][9];
         List<Integer> parent = populateHousieList();
         List<List<Integer>> subHousieRandomList = populateSubHousieRandomList(parent);
@@ -71,15 +71,11 @@ public class HousieUtil {
             System.out.println("====================");
             generateHousieTicket().forEach(System.out::println);
         }
+
         System.out.println("Generating random housie numbers");
         List<Integer> housieList = populateHousieList();
         while (!housieList.isEmpty()) {
             System.out.println(shuffleAndPopUp(housieList));
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
     }
 }
