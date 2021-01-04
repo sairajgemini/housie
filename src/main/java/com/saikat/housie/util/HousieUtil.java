@@ -73,9 +73,24 @@ public class HousieUtil {
         }
 
         System.out.println("Generating random housie numbers");
+        System.out.println("================================");
         List<Integer> housieList = populateHousieList();
-        while (!housieList.isEmpty()) {
+        System.out.print("Generate next random number (Yy/[Except Y]? ");
+        Scanner scanner = new Scanner(System.in);
+        String response = scanner.next();
+
+        while (response.equalsIgnoreCase("Y") && !housieList.isEmpty()) {
             System.out.println(shuffleAndPopUp(housieList));
+            System.out.print("Generate next random number (Yy/[Except Y]? ");
+            response = new Scanner(System.in).next();
+            if(!response.equalsIgnoreCase("Y")) {
+                System.out.print("Do you want to exit the process (Yy)?");
+                String exit = scanner.next();
+                if(!exit.equalsIgnoreCase("Y")) {
+                    System.out.print("Generate next random number (Yy/[Except Y]? ");
+                    response = scanner.next();
+                }
+            }
         }
     }
 }
