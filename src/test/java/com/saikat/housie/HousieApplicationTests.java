@@ -8,6 +8,7 @@ class HousieApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }
