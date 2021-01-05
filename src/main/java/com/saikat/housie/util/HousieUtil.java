@@ -62,6 +62,32 @@ public class HousieUtil {
         return housieList.remove(0);
     }
 
+    public static void generateRandomHoisieNumbers() {
+        System.out.println("Generating random housie numbers");
+        System.out.println("================================");
+        List<Integer> housieList = populateHousieList();
+        System.out.print("Generate next random number (Yy/[Except Y]? ");
+        Scanner scanner = new Scanner(System.in);
+        String response = scanner.next();
+
+        while (response.equalsIgnoreCase("Y") && !housieList.isEmpty()) {
+            System.out.println(shuffleAndPopUp(housieList));
+
+            if(!housieList.isEmpty()) {
+                System.out.print("Generate next random number (Yy/[Except Y]? ");
+                response = new Scanner(System.in).next();
+                if (!response.equalsIgnoreCase("Y")) {
+                    System.out.print("Do you want to exit the process (Yy)? ");
+                    String exit = scanner.next();
+                    if (!exit.equalsIgnoreCase("Y")) {
+                        System.out.print("Generate next random number (Yy/[Except Y]? ");
+                        response = scanner.next();
+                    }
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         System.out.print("Enter total no. of players: " );
         int totalPlayers = new Scanner(System.in).nextInt();
@@ -72,25 +98,6 @@ public class HousieUtil {
             generateHousieTicket().forEach(System.out::println);
         }
 
-        System.out.println("Generating random housie numbers");
-        System.out.println("================================");
-        List<Integer> housieList = populateHousieList();
-        System.out.print("Generate next random number (Yy/[Except Y]? ");
-        Scanner scanner = new Scanner(System.in);
-        String response = scanner.next();
-
-        while (response.equalsIgnoreCase("Y") && !housieList.isEmpty()) {
-            System.out.println(shuffleAndPopUp(housieList));
-            System.out.print("Generate next random number (Yy/[Except Y]? ");
-            response = new Scanner(System.in).next();
-            if(!response.equalsIgnoreCase("Y")) {
-                System.out.print("Do you want to exit the process (Yy)?");
-                String exit = scanner.next();
-                if(!exit.equalsIgnoreCase("Y")) {
-                    System.out.print("Generate next random number (Yy/[Except Y]? ");
-                    response = scanner.next();
-                }
-            }
-        }
+        generateRandomHoisieNumbers();
     }
 }
