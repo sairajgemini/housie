@@ -67,6 +67,7 @@ public class HousieUtil {
         System.out.println("================================");
         List<Integer> housieList = populateHousieList();
         System.out.print("Generate next random number (Yy/[Except Y]? ");
+
         Scanner scanner = new Scanner(System.in);
         String response = scanner.next();
 
@@ -90,14 +91,18 @@ public class HousieUtil {
 
     public static void main(String[] args) {
         System.out.print("Enter total no. of players: " );
-        int totalPlayers = new Scanner(System.in).nextInt();
+        try {
+            int totalPlayers = new Scanner(System.in).nextInt();
 
-        for(int playerCount = 1; playerCount <= totalPlayers; playerCount++) {
-            System.out.println("Ticket for player " + playerCount);
-            System.out.println("====================");
-            generateHousieTicket().forEach(System.out::println);
+            for(int playerCount = 1; playerCount <= totalPlayers; playerCount++) {
+                System.out.println("Ticket for player " + playerCount);
+                System.out.println("====================");
+                generateHousieTicket().forEach(System.out::println);
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Input type mismatch. Expecting: int");
+            System.out.println("Run again to generate the housie tickets.");
         }
-
         generateRandomHoisieNumbers();
     }
 }
